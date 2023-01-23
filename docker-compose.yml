@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   mysql-springboot:
-    image: mysql:8.0-oracle
+    image: mysql:5
     ports:
-      - 3306:3306
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=myhotel_test
@@ -22,10 +22,13 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysql-springboot:3306/myhotel_test?useSSL=false
     networks:
       - springboot-mysql-prueba2
 volumes:
   mysql_data:
+  sprint-boot-prueba2:
 networks:
   springboot-mysql-prueba2:
   
