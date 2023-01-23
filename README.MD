@@ -1,4 +1,4 @@
-# Prueba Tecnica V1
+# Prueba Tecnica 2
 
 Reto por Felix Antonio Sirit Murillo siritfelix@gmail.com
 
@@ -15,13 +15,12 @@ Instalación del proyecto
 
 * Levantar con: 
 > mvn spring-boot:run
-* Si usa docker crear y levantar imagen, que levanta el servicio de base de datos
+* Si usa docker crear puede levantar los contendedores por medio de :
+> docker-compose up
 
-> docker build -t pruebatecnica .
->
-> docker run -p 8080:8080 pruebatecnica
->
-Por defecto el perfil es dev , el cual hace un dump en la base de datos en memoria, para levantar con perfil prod, se puede usar 
+Esto descargara las imagenes de MySql 8 y Java 11 para ejecutar la aplicacion en contenedores, esto puede tardar unos minutos.
+
+Por defecto el perfil es dev que cual hace un dump en la base de datos al momento de levantar la aplicacion pero puede ejecutar el perfil prod. para no volcar datos a la db por medio de
 >java -jar -Dspring.profiles.active=prod  prueba2-1.0.0.jar.jar
 * La descripcion de los endpoint se puede observar al levantar el proyecto, mediante el swagger accedemos al recurso: http://localhost:8080/swagger-ui.html
 * La covertura de test luego de compilar se encuentra en `target\site\jacoco\index.html con 81% de coverage`
