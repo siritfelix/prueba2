@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   mysql-springboot:
-    image: mysql:5
+    restart: always
+    image: mysql:8
     ports:
       - "3307:3306"
     environment:
@@ -15,6 +16,7 @@ services:
     networks:
       - springboot-mysql-prueba2
   app-sprint-boot:
+    restart: always
     depends_on:
       - mysql-springboot
     ports:
@@ -23,7 +25,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
-      - spring.datasource.url=jdbc:mysql://mysql-springboot:3306/myhotel_test?useSSL=false
+      - spring.datasource.url=jdbc:mysql://mysql-springboot:3306/myhotel_test?allowPublicKeyRetrieval=true&useSSL=false
     networks:
       - springboot-mysql-prueba2
 volumes:
