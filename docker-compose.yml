@@ -1,18 +1,31 @@
-version: '3'
+version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8
+  mysql-springboot:
+    image: mysql:8.0-oracle
     ports:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=myhotel-test
-        -
+      - MYSQL_DATABASE=myhotel_test
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
     volumes:
       - mysql_data:/var/lib/mysql
-
+    networks:
+      - springboot-mysql-prueba2
+  app-sprint-boot:
+    depends_on:
+      - mysql-springboot
+    ports:
+      - 8080:8080
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    networks:
+      - springboot-mysql-prueba2
 volumes:
   mysql_data:
+networks:
+  springboot-mysql-prueba2:
+  
